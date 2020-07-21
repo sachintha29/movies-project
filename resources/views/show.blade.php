@@ -16,7 +16,7 @@
                     <span class="mx-2">|</span>
                     <span>
                         @foreach ($movie['genres'] as $genre)
-                            {{ $genre['name'] }}@if (!$loop->last),  @endif
+                            {{ $genre['name'] }}@if(!$loop->last),@endif
                         @endforeach
                     </span>
                 </div>
@@ -45,23 +45,18 @@
                     </div>
                 </div>
 
-                <div x-data="{ isOpen: false }">
-                    @if (count($movie['videos']['results']) > 0)
-                        <div class="mt-12">
-                            <button
-                                @click="isOpen = true"
-                                class="flex inline-flex items-center bg-orange-500 text-gray-900 rounded font-semibold px-5 py-4 hover:bg-orange-600 transition ease-in-out duration-150"
-                            >
-                                <svg class="w-6 fill-current" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path d="M10 16.5l6-4.5-6-4.5v9zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
-                                <span class="ml-2">Play Trailer</span>
-                            </button>
-                        </div>
-
-                          
-                    @endif
-
-
+                @if (count($movie['videos']['results']) > 0)
+                <div class="mt-12">
+                <a href="http://youtube.com/watch?v={{$movie['videos']['results'][0]['key']}}"
+                        class="flex inline-flex items-center bg-orange-500 text-gray-900 rounded font-semibold px-5 py-4 hover:bg-orange-600 transition ease-in-out duration-150"
+                    >
+                        <svg class="w-6 fill-current" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path d="M10 16.5l6-4.5-6-4.5v9zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
+                        <span class="ml-2">Play Trailer</span>
+                </a>
                 </div>
+
+                  
+                @endif
 
             </div>
         </div>
@@ -98,17 +93,14 @@
             <h2 class="text-4xl font-semibold">Images</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
                 @foreach ($movie['images']['backdrops'] as $image)
+                @if ($loop->index < 6)
+
                     <div class="mt-8">
-                        <a
-                            @click.prevent="
-                                isOpen = true
-                                image='{{ 'https://image.tmdb.org/t/p/original/'.$image['file_path'] }}'
-                            "
-                            href="#"
-                        >
+                        <a href="#">
                             <img src="{{ 'https://image.tmdb.org/t/p/w500/'.$image['file_path'] }}" alt="image1" class="hover:opacity-75 transition ease-in-out duration-150">
                         </a>
                     </div>
+                @endif
                 @endforeach
             </div>
 

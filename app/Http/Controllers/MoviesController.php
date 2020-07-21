@@ -38,9 +38,9 @@ class MoviesController extends Controller
 
         // dump($nowPlayingMovies);
         return view('index',[
-            'popularMovies' => $popularMovies,
-            'nowPlayingMovies' => $nowPlayingMovies,
-            'topRatedMovies' => $topRatedMovies,
+            'popularMovies' => collect($popularMovies)->take(15),
+            'nowPlayingMovies' => collect($nowPlayingMovies)->take(15),
+            'topRatedMovies' => collect($topRatedMovies)->take(10),
             'genres' => $genres
 
         ]);
