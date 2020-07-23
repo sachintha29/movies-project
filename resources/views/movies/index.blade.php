@@ -3,7 +3,7 @@
 
 @section('content')
 
-     <div class="container mx-auto px-4 pt-16">
+     <div class="container mx-auto px-4 py-16">
 
         <div class="popular-movies py-24">
             <h2 class="uppercase tracking-wider text-orange-500 text-lg font-semibold">Popular Movies</h2>
@@ -40,6 +40,7 @@
                 @endforeach
             </div>
         </div>
+     
         
      </div>
 
